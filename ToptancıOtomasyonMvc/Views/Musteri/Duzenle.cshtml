@@ -1,0 +1,30 @@
+﻿@model ToptancıOtomasyonMvc.Models.Musteri
+
+@{
+    ViewBag.Title = "Duzenle";
+}
+
+<h2>Musteri Bilgileri Düzenleme İşlemi</h2>
+
+@using (Html.BeginForm("Duzenle", "Musteri", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Musteri_ID)
+    <div class="form-group">
+        @Html.LabelFor(m => m.AD)
+        @Html.TextBoxFor(m => m.AD, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SOYAD)
+        @Html.TextBoxFor(m => m.SOYAD, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TCKNo)
+        @Html.TextBoxFor(m => m.TCKNo, new { @class = "form-control" })
+    </div>
+
+
+
+
+    <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-success" />
+}
+

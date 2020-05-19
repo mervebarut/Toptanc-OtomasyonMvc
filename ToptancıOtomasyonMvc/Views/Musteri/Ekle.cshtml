@@ -1,0 +1,103 @@
+﻿
+@using ToptancıOtomasyonMvc.Models
+@model Musteri
+
+@{
+    ViewBag.Title = "Musteri Ekleme İşlemi";
+}
+
+
+<h2>Musteri Ekleme</h2>
+<div>
+
+
+    Mvc Html Helpers: Methodlardır.
+    Server Side Validation
+    Client Side Validation
+
+    @*@using (@Html.BeginForm("Ekle", "Musteri", FormMethod.Post)) // html form olsun diye bu yeşil yeri aç ajax kullanmıcaksan
+        {*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.AD)
+        @Html.TextBoxFor(m => m.AD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AD)
+        <label id="lblAdHata" style="display:none;color:red">Client Side Hata - Ad</label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SOYAD)
+        @Html.TextBoxFor(m => m.SOYAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SOYAD)
+        <label id="lblSoyadHata" style="display:none;color:red">Client Side Hata - Soyad</label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Telefon)
+        @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Telefon)
+        <label id="lblTelefonHata" style="display:none;color:red">Client Side Hata - Telefon</label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sifre)
+        @Html.TextBoxFor(m => m.Sifre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Sifre)
+        <label id="lblSifreHata" style="display:none;color:red">Client Side Hata - Sifre</label>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TCKNo)
+        @Html.TextBoxFor(m => m.TCKNo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TCKNo)
+        <label id="lblTcknoHata" style="display:none;color:red">Client Side Hata - TCKNo</label>
+    </div>
+
+
+
+    <input type="submit" name="btnKaydet" value="Kaydet" class="btn btn-success" onclick="MusteriEkle()" />
+    @*}*@
+
+
+</div>
+@section scripts{
+    <script>
+        function BoslukKontrol() {
+            var hatayok = true;
+            if ($("#Ad").val() == "" || $("#Soyad").val() == "") {
+                $("#lblAdHata").show();
+                $("#lblSoyadHata").show();
+                $("#lblTelefonHata").show();
+                $("#lblSifreHata").show();
+                $("#lblTcknoHata").show();
+
+                hatayok = false;
+            }
+            return hatayok;
+        }
+
+        function MusteriEkle() {
+            //yukardaki if else i al else aşağısı
+            $.ajax({
+                url: "/Musteri/Ekle",
+                method: "Post",
+                data: {
+                    Ad: $("#Ad").val(),
+                    Soyad: $("#Soyad").val()
+                   Telefon: $("#Telefon").val()
+                   Sifre: $("#Sifre").val()
+                   Tckno: $("#TCKNo").val()
+
+                },
+                success: function (data) {
+                    //alert("Mustteri Ekleme Başarılı");
+                    //console.log(data);
+                    if (data=="True") {
+                        alert("İşlem başarılı");
+                    } else {
+                        alert("Ekleme işleminde hata");
+                    }
+                }
+                //error
+            });
+        }
+    </script>
+}
+
+

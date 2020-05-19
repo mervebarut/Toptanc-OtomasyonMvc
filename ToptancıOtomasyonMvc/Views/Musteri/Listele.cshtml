@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Listele";
+}
+
+@using ToptancıOtomasyonMvc.Models
+@{
+    Layout = null;
+}
+
+@model IEnumerable<Musteri>
+
+<h2>Listele</h2>
+
+<table style="border:1px solid black">
+    <thead>
+        <tr>
+            <th>AD</th>
+            <th>SOYAD</th>
+            <th>Telefon</th>
+            <th>TCKNo</th>
+
+
+        </tr>
+
+    </thead>
+    <tbody style="">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AD</td>
+                <td>@item.SOYAD</td>
+                <td>@item.Telefon</td>
+                <td>@item.TCKNo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
